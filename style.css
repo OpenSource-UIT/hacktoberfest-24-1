@@ -34,7 +34,7 @@ nav ul{
 }
 
 .box{
-    border: 2px solid black;
+    border: 2px solid rgb(6, 30, 210);
     font-size: 8vw;
     cursor: pointer;
     display: flex;
