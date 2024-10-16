@@ -34,6 +34,22 @@ const checkWin = ()=>{
     })
 }
 
+// Function to check for draw
+const checkDraw = () => {
+    let isDraw = true;
+    let boxtexts = document.querySelectorAll('.boxtext');
+    boxtexts.forEach(box => {
+        if (box.innerText === '') {
+            isDraw = false;
+        }
+    });
+    if (isDraw && !isgameover) {
+        document.querySelector('.info').innerText = "It's a Draw!";
+        gameover.play();
+        isgameover = true;
+    }
+};
+
 // Game Logic
 // music.play()
 let boxes = document.getElementsByClassName("box");
@@ -45,6 +61,7 @@ Array.from(boxes).forEach(element =>{
             turn = changeTurn();
             audioTurn.play();
             checkWin();
+            checkDraw();
             if (!isgameover){
                 document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
             } 
