@@ -5,13 +5,20 @@ let gameover = new Audio("gameover.mp3")
 let turn = "X"
 let isgameover = false;
 
+let scoreX = 0;
+let scoreO = 0;
+
+const updateScore = () => {
+    document.querySelector('.scoreX').innerText = "X: " + scoreX;
+    document.querySelector('.scoreO').innerText = "O: " + scoreO;
+};
 // Function to change the turn
 const changeTurn = ()=>{
     return turn === "X"? "0": "X"
 }
 
 // Function to check for a win
-const checkWin = ()=>{
+const checkWin = () => {
     let boxtext = document.getElementsByClassName('boxtext');
     let wins = [
         [0, 1, 2, 5, 5, 0],
@@ -22,17 +29,35 @@ const checkWin = ()=>{
         [2, 5, 8, 15, 15, 90],
         [0, 4, 8, 5, 15, 45],
         [2, 4, 6, 5, 15, 135],
-    ]
-    wins.forEach(e =>{
-        if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
-            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won"
-            isgameover = true
+    ];
+    wins.forEach(e => {
+        if ((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "")) {
+            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won";
+            isgameover = true;
+
+            // Update score based on who won
+            if (boxtext[e[0]].innerText === "X") {
+                scoreX++;
+                document.querySelector('.scoreX').innerText = "Player X: " + scoreX;
+            } else {
+                scoreO++;
+                document.querySelector('.scoreO').innerText = "Player O: " + scoreO;
+            }
+
+            // Show the winning line
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
-            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
+            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
             document.querySelector(".line").style.width = "20vw";
         }
-    })
-}
+    });
+};
+
+document.getElementById('reset-scores').addEventListener('click', () => {
+    scoreX = 0;
+    scoreO = 0;
+    document.querySelector('.scoreX').innerText = "Player X: " + scoreX;
+    document.querySelector('.scoreO').innerText = "Player 0: " + scoreO;
+});
 
 // Function to check for draw
 const checkDraw = () => {
@@ -70,15 +95,16 @@ Array.from(boxes).forEach(element =>{
 })
 
 // Add onclick listener to reset button
-reset.addEventListener('click', ()=>{
+reset.addEventListener('click', () => {
     let boxtexts = document.querySelectorAll('.boxtext');
     Array.from(boxtexts).forEach(element => {
-        element.innerText = ""
+        element.innerText = "";
     });
-    turn = "X"; 
-    isgameover = false
+    turn = "X";
+    isgameover = false;
     document.querySelector(".line").style.width = "0vw";
-    document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
-    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
-})
+    document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
+    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
+});
+
 
