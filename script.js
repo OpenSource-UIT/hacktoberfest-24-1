@@ -2,7 +2,10 @@ console.log("Welcome to Tic Tac Toe")
 let music = new Audio("music.mp3")
 let audioTurn = new Audio("ting.mp3")
 let gameover = new Audio("gameover.mp3")
-let turn = "X"
+
+let player1 = "X";  // Default name for player X
+let player2 = "O";  // Default name for player O
+let turn = "X";
 let isgameover = false;
 
 // Function to change the turn
@@ -24,15 +27,33 @@ const checkWin = ()=>{
         [2, 4, 6, 5, 15, 135],
     ]
     wins.forEach(e =>{
-        if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
-            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won"
-            isgameover = true
-            document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
-            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
-            document.querySelector(".line").style.width = "20vw";
+        if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && 
+           (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && 
+           (boxtext[e[0]].innerText !== "") ){
+                let winner = boxtext[e[0]].innerText === "X" ? player1 : player2;
+                document.querySelector('.info').innerText = winner + " Won"
+                isgameover = true
+                document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
+                document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
+                document.querySelector(".line").style.width = "20vw";
         }
     })
 }
+
+// Start Game Logic (Submit Names)
+document.getElementById("startGame").addEventListener("click", () => {
+    // Get player names from input fields
+    player1 = document.getElementById("player1").value || "Player X";
+    player2 = document.getElementById("player2").value || "Player O";
+
+    // Update the initial turn info
+    document.getElementsByClassName("info")[0].innerText = "Turn for " + player1;
+
+    // Hide the 'Turn for Player one' message and input section
+    document.getElementById("infoBeforeSubmit").style.display = "none";
+    document.querySelector(".inputSection").style.display = "none";
+});
+
 
 // Game Logic
 // music.play()
@@ -46,7 +67,7 @@ Array.from(boxes).forEach(element =>{
             audioTurn.play();
             checkWin();
             if (!isgameover){
-                document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
+                document.getElementsByClassName("info")[0].innerText  = "Turn for " + (turn === "X" ? player1 : player2);;
             } 
         }
     })
@@ -61,7 +82,7 @@ reset.addEventListener('click', ()=>{
     turn = "X"; 
     isgameover = false
     document.querySelector(".line").style.width = "0vw";
-    document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
+    document.getElementsByClassName("info")[0].innerText  = "Turn for " + player1;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
 })
 
