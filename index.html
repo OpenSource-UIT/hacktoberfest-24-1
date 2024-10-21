@@ -13,10 +13,9 @@
         <li>MyTicTacToe.com</li>
       </ul>
     </nav>
-
     <div class="gameContainer">
-        <div class="container">
-          <div class="line"></div>
+      <div class="container">
+        <div class="line"></div>
         <div class="box bt-0 bl-0"><span class="boxtext"></span></div>
         <div class="box bt-0"><span class="boxtext"></span></div>
         <div class="box bt-0 br-0"><span class="boxtext"></span></div>
@@ -31,20 +30,21 @@
         <h1>Hello to Tic Tac MyTicTacToe</h1>
         <!-- Added Input Section for Player Names -->
         <div class="inputSection">
-            <h3>Please enter your names:</h3>
-            <div>
+          <h3>Please enter your names:</h3>
+          <div>
             <label for="player1">Player 1 (X):  </label>
             <input type="text" id="player1" placeholder="Enter name for Player X">
-            </div>
-            <div>
+          </div>
+          <div>
             <label for="player2">Player 2(O):</label>
             <input type="text" id="player2" placeholder="Enter name for Player O">
-            </div>
-            <button id="startGame">Enter</button>
+          </div>
+          <button id="startGame">Enter</button>
         </div>
         <div class="gameStatus">
           <span class="info">Turn for X</span>
           <button id="reset">Reset</button>
+          <button id="undo">Undo</button>  <!-- Added Undo Button -->
         </div>
         <div class="imgbox">
           <img src="excited.gif" alt="" />
