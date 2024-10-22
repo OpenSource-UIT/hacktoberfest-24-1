@@ -46,10 +46,65 @@ nav ul{
     background-color: rgb(242, 234, 250);
 }
 
-.info {
-    font-size: 22px;
+.inputSection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
+.inputSection label {
+    margin-right: 10px;
+    font-size: 18px;
+    height: 30px;
+    line-height: 40px;
+}
+.inputSection input {
+    padding: 4px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    height: 20px;
+}
+
+.inputSection button {
+    width: 100px;
+    height: 30px;
+    background-color: #f3e7f9;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px; 
+    margin-top: 10px;
+    font-weight: bolder;
+    border: 2px solid #ccc;
+}
+
+.inputSection button:hover {
+    background-color: rgb(165, 168, 194);
+}
+
+.gameStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info {
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+#reset {
+    margin: 0 0 0 20px;
+    padding: 8px 16px;
+    background: #f3e7f9;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Baloo Bhaina 2';
+    font-size: 16px;
+    font-weight: bolder;
+    border: 2px solid #ccc;
+}
 .gameInfo{
     padding: 0 34px;
     font-family: 'Baloo Bhaina 2', cursive;
